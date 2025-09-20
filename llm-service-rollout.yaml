@@ -1,3 +1,4 @@
+# llm-service-rollout.yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
@@ -9,6 +10,7 @@ spec:
     blueGreen:
       activeService: llm-service
       previewService: llm-service-preview
+      autoPromotionEnabled: true
   selector:
     matchLabels:
       app: llm-service
@@ -22,19 +24,19 @@ spec:
           image: crummycrushed/ops-service:a593e71cc7f1a849256a49fdb9735f591c14ed73
           ports:
             - containerPort: 8000
-          env: 
-            - name : OLLAMA_HOST
+          env:
+            - name: OLLAMA_HOST
               value: "ollama"
             - name: OLLAMA_PORT
               value: "11434"
-          livelinessProbe:
+          livenessProbe:
             httpGet:
               path: /health
               port: 8000
             initialDelaySeconds: 10
             periodSeconds: 20
           readinessProbe:
-            httpGet: 
+            httpGet:
               path: /health
               port: 8000
             initialDelaySeconds: 5
@@ -55,8 +57,8 @@ spec:
   selector:
     app: llm-service
   ports:
-  - port: 80
-    targetPort: 8080
+    - port: 80
+      targetPort: 8000
 ---
 apiVersion: v1
 kind: Service
@@ -67,6 +69,5 @@ spec:
   selector:
     app: llm-service
   ports:
-  - port: 80
-    targetPort: 8080
-
+    - port: 80
+      targetPort: 8000
