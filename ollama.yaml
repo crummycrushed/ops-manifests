@@ -13,6 +13,19 @@ spec:
       labels:
         app: ollama
     spec:
+      initContainers:
+        - name: model-puller
+          image: crummycrushed/ollama-tinyllama:v2
+          command: ["/bin/sh", "-c"]
+          args: 
+            - |
+              ollama serve &
+              sleep 15
+              ollama pull tinyllama 
+              ollama list
+          volumenMounts:
+          - name: ollama-data
+            mountPath: /root/.ollama
       containers:
         - name: ollama-tinyllama
           image: crummycrushed/ollama-tinyllama:v2
