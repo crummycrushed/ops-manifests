@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: ollama-tinyllama
-          image: crummycrushed/ollama-tinyllama:v1
+          image: crummycrushed/ollama-tinyllama:v2
           ports:
             - containerPort: 11434
           volumeMounts:
