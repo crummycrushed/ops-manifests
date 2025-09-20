@@ -10,6 +10,7 @@ spec:
     blueGreen:
       activeService: llm-service
       previewService: llm-service-preview
+      autoPromotionEnabled: false
   selector:
     matchLabels:
       app: llm-service
