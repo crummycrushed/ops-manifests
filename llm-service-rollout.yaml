@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: llm-service
-          image: crummycrushed/ops-service:2f737488cc39890842a861e74ad896a94b65b472
+          image: crummycrushed/ops-service:28ff318becab69557365901032ff60ce1405c847
           ports:
             - containerPort: 8000
           env:
@@ -66,7 +66,7 @@ metadata:
   namespace: llm
 spec:
   selector:
-    app: llm-service
+    app: llm-service-preview
   ports:
     - port: 80
       targetPort: 8000
