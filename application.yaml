@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoUrl: https://github.com/crummycrushed/ops-manifests
+    repoURL: https://github.com/crummycrushed/ops-manifests
     targetVersion: main 
     path: .
   destination:
