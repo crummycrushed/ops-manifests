@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ollama 
+  name: ollama
   namespace: llm
 spec:
   replicas: 1
@@ -17,13 +17,13 @@ spec:
         - name: model-puller
           image: crummycrushed/ollama-tinyllama:v2
           command: ["/bin/sh", "-c"]
-          args: 
-            - |
-              ollama serve &
-              sleep 15
-              ollama pull tinyllama 
-              ollama list
-          volumenMounts:
+          args:
+          - |
+            ollama serve &
+            sleep 15
+            ollama pull tinyllama
+            ollama list
+          volumeMounts:
           - name: ollama-data
             mountPath: /root/.ollama
       containers:
@@ -37,7 +37,6 @@ spec:
       volumes:
         - name: ollama-data
           emptyDir: {}
-
 ---
 apiVersion: v1
 kind: Service
@@ -48,8 +47,5 @@ spec:
   selector:
     app: ollama
   ports:
-  - port: 11434
-    targetPort: 11434
-
-        
-
+    - port: 11434
+      targetPort: 11434
