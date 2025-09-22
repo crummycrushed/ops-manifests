@@ -29,18 +29,6 @@ spec:
               value: "ollama"
             - name: OLLAMA_PORT
               value: "11434"
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: 8000
-            initialDelaySeconds: 10
-            periodSeconds: 20
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: 8000
-            initialDelaySeconds: 5
-            periodSeconds: 10
           volumeMounts:
             - name: logs
               mountPath: /app/logs
