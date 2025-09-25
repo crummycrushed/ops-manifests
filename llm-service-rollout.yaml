@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: llm-service
-          image: crummycrushed/ops-service:eb68bb3d2a1b205467f411e0d2c9ba9660ab75ab
+          image: crummycrushed/ops-service:a3e1edd8a14ce2b55fa46b7dbc5788fcef0790ec
           ports:
             - containerPort: 8000
           env:
